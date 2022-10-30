@@ -19,6 +19,7 @@ import java.util.Set;
 public class Author implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     private String fullname;

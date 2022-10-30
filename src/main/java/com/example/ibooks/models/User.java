@@ -7,12 +7,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -23,6 +22,7 @@ import java.util.HashSet;
 public class User implements Serializable, UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String username;
     private String firstname;
@@ -30,6 +30,9 @@ public class User implements Serializable, UserDetails {
     private String email;
     private int age;
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Review> reviews;
 
 
     @Override

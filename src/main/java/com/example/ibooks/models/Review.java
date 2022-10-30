@@ -2,9 +2,7 @@ package com.example.ibooks.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -13,7 +11,16 @@ import java.util.Date;
 public class Review {
 
     @Id
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    private Date date;
+    private String date;
     private String text;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 }

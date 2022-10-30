@@ -8,6 +8,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,9 +16,10 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-public class Book implements Serializable{
+public class Book implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     private String name;
@@ -26,4 +28,7 @@ public class Book implements Serializable{
 
     @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER) // , fetch = FetchType.LAZY
     private Set<Author> authors;
+
+    @OneToMany(mappedBy = "book")
+    private List<Review> reviews;
 }

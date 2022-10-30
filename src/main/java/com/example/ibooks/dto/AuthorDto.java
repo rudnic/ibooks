@@ -3,9 +3,7 @@ package com.example.ibooks.dto;
 import com.example.ibooks.models.Author;
 import com.example.ibooks.models.Book;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -14,6 +12,8 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class AuthorDto implements Serializable {
 
     private int id;
