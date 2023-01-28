@@ -23,15 +23,6 @@ public class AuthorDto implements Serializable {
     private String info;
     private Set<AuthorsBooksListDTO> books = new HashSet<>();
 
-    @AllArgsConstructor
-    @Builder
-    class AuthorsBooksListDTO {
-        private final int id;
-        private String name;
-        private String snippet;
-        private float rating;
-    }
-
 }
 
 

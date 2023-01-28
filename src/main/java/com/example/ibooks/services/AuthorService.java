@@ -2,6 +2,7 @@ package com.example.ibooks.services;
 
 import com.example.ibooks.dto.responses.aurhor.AllAuthorsList;
 import com.example.ibooks.dto.responses.aurhor.AuthorDto;
+import com.example.ibooks.dto.responses.aurhor.ConverterToAuthorDto;
 import com.example.ibooks.models.Author;
 import com.example.ibooks.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,13 @@ public class AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
 
-    public AuthorDto getAuthorById(int id) {
+    @Autowired
+    private ConverterToAuthorDto converterToAuthorDto;
+
+    public AuthorDto getAuthorById(int id) { // its cannot convert nested classes
         if (authorRepository.findById(id).isEmpty())
             return null;
-        Author author = authorRepository.findById(id).get();
-        return null; // TODO
+        return converterToAuthorDto.mapperToAuthorDto(authorRepository.findById(id).get());
     }
 
     public List<AllAuthorsList> getAllAuthors() {
