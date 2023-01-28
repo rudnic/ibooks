@@ -25,7 +25,7 @@ public class BookController {
         return new ResponseEntity<>(bookService.getAllBooks(), HttpStatus.OK);
     }
 
-    @GetMapping("/book/{id}")
+    @GetMapping("/books/{id}")
     public ResponseEntity<?> getBookById(@PathVariable int id) {
         if (bookService.getBookById(id) == null)
             return new ResponseEntity<>("Book not found", HttpStatus.NOT_FOUND);

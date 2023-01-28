@@ -58,6 +58,8 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
+        // signupRequest.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
+        // signupRequest.setConfirmPassword(passwordEncoder.encode(signupRequest.getConfirmPassword()));
         boolean result = userService.registerUser(signupRequest);
         if (result)
             return new ResponseEntity<>("Register successful", HttpStatus.OK);

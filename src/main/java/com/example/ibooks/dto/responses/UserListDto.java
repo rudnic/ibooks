@@ -1,4 +1,4 @@
-package com.example.ibooks.dto;
+package com.example.ibooks.dto.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ReviewBookDto {
+public class UserListDto {
     private int id;
-    private UserDto user;
-    private String date;
-    private String text;
-
+    private String firstname;
+    private String lastname;
+    private String email;
+    private int age;
 }

@@ -22,7 +22,9 @@ import java.util.Set;
 public class User implements Serializable, UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    // @GeneratedValue(strategy = GenerationType.SEQUENCE, )
+    @GeneratedValue(generator = "user_sequence")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "USER_SEQ", allocationSize = 5)
     private int id;
     private String username;
     private String firstname;

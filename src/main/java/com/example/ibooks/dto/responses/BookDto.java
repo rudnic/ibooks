@@ -1,5 +1,6 @@
-package com.example.ibooks.dto;
+package com.example.ibooks.dto.responses;
 
+import com.example.ibooks.dto.responses.aurhor.AuthorDto;
 import com.example.ibooks.models.Author;
 import com.example.ibooks.models.Book;
 import com.example.ibooks.models.Review;
@@ -11,7 +12,6 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter

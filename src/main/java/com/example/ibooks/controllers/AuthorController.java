@@ -19,7 +19,7 @@ public class AuthorController {
         return new ResponseEntity<>(authorService.getAllAuthors(), HttpStatus.OK);
     }
 
-    @GetMapping("/author/{id}")
+    @GetMapping("/authors/{id}")
     public ResponseEntity<?> getAuthorById(@PathVariable int id) {
         if (authorService.getAuthorById(id) == null)
             return new ResponseEntity<>("Author not found", HttpStatus.NOT_FOUND);

@@ -1,9 +1,6 @@
-package com.example.ibooks.dto;
+package com.example.ibooks.dto.responses;
 
-import com.example.ibooks.models.User;
 import lombok.*;
-
-import java.util.Date;
 
 @Getter
 @Setter

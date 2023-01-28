@@ -1,13 +1,13 @@
 package com.example.ibooks.services;
 
-import com.example.ibooks.dto.AuthorDto;
-import com.example.ibooks.dto.BookDto;
+import com.example.ibooks.dto.responses.aurhor.AllAuthorsList;
+import com.example.ibooks.dto.responses.aurhor.AuthorDto;
 import com.example.ibooks.models.Author;
-import com.example.ibooks.models.Book;
 import com.example.ibooks.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,20 +20,25 @@ public class AuthorService {
     public AuthorDto getAuthorById(int id) {
         if (authorRepository.findById(id).isEmpty())
             return null;
-        return new AuthorDto(authorRepository.findById(id).get());
-
+        Author author = authorRepository.findById(id).get();
+        return null; // TODO
     }
 
-    public List<AuthorDto> getAllAuthors() {
+    public List<AllAuthorsList> getAllAuthors() {
 
         List<Author> authors = authorRepository.findAll();
-        List<AuthorDto> authorsDto = new LinkedList<>();
+        List<AllAuthorsList> authorsList = new ArrayList<>();
 
         for (Author author : authors) {
-            authorsDto.add(new AuthorDto(author));
+            authorsList.add(new AllAuthorsList(
+                    author.getId(),
+                    author.getFullname(),
+                    author.getBirthday(),
+                    author.getInfo()
+            ));
         }
 
-        return authorsDto;
+        return authorsList;
 
     }
 

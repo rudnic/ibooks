@@ -1,6 +1,6 @@
 package com.example.ibooks.services;
 
-import com.example.ibooks.dto.BookDto;
+import com.example.ibooks.dto.responses.BookDto;
 import com.example.ibooks.models.Book;
 import com.example.ibooks.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(authEntryPointJwt).and()
-                .authorizeRequests().antMatchers("/users**", "/signin*", "/book**").permitAll()
+                .authorizeRequests().antMatchers("/users**", "/signin*", "/book**", "/signup**", "/**").permitAll()
                         .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

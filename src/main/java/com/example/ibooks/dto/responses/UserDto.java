@@ -1,6 +1,5 @@
-package com.example.ibooks.dto;
+package com.example.ibooks.dto.responses;
 
-import com.example.ibooks.models.Review;
 import lombok.*;
 
 import java.util.Set;

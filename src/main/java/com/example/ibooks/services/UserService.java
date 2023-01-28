@@ -4,9 +4,12 @@ import com.example.ibooks.dto.requests.SignupRequest;
 import com.example.ibooks.models.User;
 import com.example.ibooks.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -18,6 +21,14 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+/*    @Autowired
+    private PasswordEncoder passwordEncoder;*/
+
+/*    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }*/
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -53,10 +64,13 @@ public class UserService implements UserDetailsService {
             return false;
 
         try {
+            signupRequest.setPassword(new BCryptPasswordEncoder().encode(signupRequest.getPassword()));
             userRepository.save(User.builder()
                     .username(signupRequest.getUsername())
                     .firstname(signupRequest.getFirstname())
                     .lastname(signupRequest.getLastname())
+                    .email(signupRequest.getEmail())
+                    // .password(passwordEncoder.encode(signupRequest.getPassword()))
                     .password(signupRequest.getPassword())
                     .age(signupRequest.getAge())
                     .build());
