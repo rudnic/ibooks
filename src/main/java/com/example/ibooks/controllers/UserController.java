@@ -1,6 +1,6 @@
 package com.example.ibooks.controllers;
 
-import com.example.ibooks.dto.responses.UserListDto;
+import com.example.ibooks.dto.responses.users.UserListDto;
 import com.example.ibooks.models.User;
 import com.example.ibooks.repository.UserRepository;
 import com.example.ibooks.services.UserService;

@@ -30,5 +30,5 @@ public class Book implements Serializable {
     private Set<Author> authors;
 
     @OneToMany(mappedBy = "book")
-    private List<Review> reviews;
+    private Set<Review> reviews;
 }

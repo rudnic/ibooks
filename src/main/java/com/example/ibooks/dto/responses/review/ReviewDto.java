@@ -1,5 +1,7 @@
-package com.example.ibooks.dto.responses;
+package com.example.ibooks.dto.responses.review;
 
+import com.example.ibooks.dto.responses.book.BookDto;
+import com.example.ibooks.dto.responses.users.UserListDto;
 import lombok.*;
 
 @Getter

@@ -1,4 +1,4 @@
-package com.example.ibooks.dto.responses.aurhor;
+package com.example.ibooks.dto.responses.author;
 
 import com.example.ibooks.models.Author;
 import com.example.ibooks.models.Book;
@@ -6,14 +6,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Component

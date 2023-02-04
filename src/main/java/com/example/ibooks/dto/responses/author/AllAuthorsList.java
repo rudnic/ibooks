@@ -1,4 +1,4 @@
-package com.example.ibooks.dto.responses.aurhor;
+package com.example.ibooks.dto.responses.author;
 
 
 import lombok.*;

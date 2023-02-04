@@ -1,4 +1,4 @@
-package com.example.ibooks.dto.responses;
+package com.example.ibooks.dto.responses.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

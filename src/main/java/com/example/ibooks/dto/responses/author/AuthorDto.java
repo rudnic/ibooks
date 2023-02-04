@@ -1,9 +1,5 @@
-package com.example.ibooks.dto.responses.aurhor;
+package com.example.ibooks.dto.responses.author;
 
-import com.example.ibooks.dto.responses.BookDto;
-import com.example.ibooks.models.Author;
-import com.example.ibooks.models.Book;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.io.Serializable;
