@@ -14,7 +14,9 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -25,10 +27,11 @@ import java.util.Set;
 public class ConverterToBookDto implements Serializable {
     public BookDto mapperToBookDto(Book book) {
 
-        Set<Author> authors = book.getAuthors();
+        List<Author> authors = book.getAuthors();
         Set<BooksAuthorsListDTO> authorsListDto = new HashSet<>();
 
         Set<Review> reviews = book.getReviews();
+
         Set<ReviewBookDto> reviewListDto = new HashSet<>();
 
         BookDto dto = new BookDto();
@@ -42,19 +45,18 @@ public class ConverterToBookDto implements Serializable {
             authorsListDto.add(new BooksAuthorsListDTO(a.getId(), a.getFullname()));
         }
 
-        // System.out.println(book.getReviews().toString());
 
-/*        for (Review r : reviews) {
+        for (Review r : reviews) {
             reviewListDto.add(new ReviewBookDto(
                     r.getId(),
                     new ReviewUserDto(r.getUser().getId(), r.getUser().getUsername()),
                     r.getDate(),
                     r.getText()
             ));
-        }*/
+        }
 
         dto.setAuthors(authorsListDto);
-        // dto.setReviews(reviewListDto);
+        dto.setReviews(reviewListDto);
         return dto;
     }
 }

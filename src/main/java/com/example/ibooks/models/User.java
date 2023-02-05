@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,7 +35,7 @@ public class User implements Serializable, UserDetails {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private Set<Review> reviews;
+    private List<Review> reviews;
 
 
     @Override

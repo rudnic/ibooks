@@ -10,6 +10,7 @@ import com.example.ibooks.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class BookService {
 
     @Autowired
@@ -27,7 +29,7 @@ public class BookService {
     public BookDto getBookById(int id) {
         if (bookRepository.findById(id).isEmpty())
             return null;
-        System.out.println(bookRepository.findById(id).get().getReviews());
+        //System.out.println(bookRepository.findById(id).get().getReviews());
         return converterToBookDto.mapperToBookDto(bookRepository.findById(id).get());
 
     }

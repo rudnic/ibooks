@@ -27,8 +27,8 @@ public class Book implements Serializable {
     private float rating;
 
     @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER) // , fetch = FetchType.LAZY
-    private Set<Author> authors;
+    private List<Author> authors;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
     private Set<Review> reviews;
 }
