@@ -63,6 +63,11 @@ public class UserService implements UserDetailsService {
         if (!signupRequest.getConfirmPassword().equals(signupRequest.getPassword()))
             return false;
 
+        // add check for email and add throw exceptions
+        if (userRepository.findByUsername(signupRequest.getUsername()).isPresent()) {
+            return false;
+        }
+
         try {
             signupRequest.setPassword(new BCryptPasswordEncoder().encode(signupRequest.getPassword()));
             userRepository.save(User.builder()
