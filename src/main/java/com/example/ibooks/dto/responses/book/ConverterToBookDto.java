@@ -1,9 +1,7 @@
 package com.example.ibooks.dto.responses.book;
 
 import com.example.ibooks.dto.responses.review.ReviewBookDto;
-import com.example.ibooks.dto.responses.review.ReviewDto;
-import com.example.ibooks.dto.responses.review.ReviewUserDto;
-import com.example.ibooks.dto.responses.users.UserDto;
+import com.example.ibooks.dto.responses.review.ReviewsProfileDto;
 import com.example.ibooks.models.Author;
 import com.example.ibooks.models.Book;
 import com.example.ibooks.models.Review;
@@ -14,7 +12,6 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,7 +46,7 @@ public class ConverterToBookDto implements Serializable {
         for (Review r : reviews) {
             reviewListDto.add(new ReviewBookDto(
                     r.getId(),
-                    new ReviewUserDto(r.getUser().getId(), r.getUser().getUsername()),
+                    new ReviewsProfileDto(r.getUser().getId(), r.getUser().getUsername()),
                     r.getDate(),
                     r.getText()
             ));

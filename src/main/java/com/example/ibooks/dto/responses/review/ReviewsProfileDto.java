@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewUserDto implements Serializable {
+public class ReviewsProfileDto implements Serializable {
     private int id;
     private String username;
 }

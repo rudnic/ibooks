@@ -1,6 +1,5 @@
 package com.example.ibooks.dto.responses.review;
 
-import com.example.ibooks.dto.responses.users.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ReviewBookDto {
     private int id;
-    private ReviewUserDto user;
+    private ReviewsProfileDto user;
     private String date;
     private String text;
 

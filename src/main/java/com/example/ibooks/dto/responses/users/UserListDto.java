@@ -13,6 +13,6 @@ public class UserListDto {
     private int id;
     private String firstname;
     private String lastname;
-    private String email;
+    private String username;
     private int age;
 }

@@ -1,6 +1,10 @@
 package com.example.ibooks.services;
 
 import com.example.ibooks.dto.requests.SignupRequest;
+import com.example.ibooks.exception.EmailAlreadyUsedException;
+import com.example.ibooks.exception.IncorrectEmailException;
+import com.example.ibooks.exception.PasswordsDoesntMatchException;
+import com.example.ibooks.exception.UsernameAlreadyUsedException;
 import com.example.ibooks.models.User;
 import com.example.ibooks.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +19,17 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-/*    @Autowired
-    private PasswordEncoder passwordEncoder;*/
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
-/*    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }*/
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -59,15 +60,24 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
-    public boolean registerUser(SignupRequest signupRequest) {
+    public boolean registerUser(SignupRequest signupRequest) throws PasswordsDoesntMatchException, EmailAlreadyUsedException, UsernameAlreadyUsedException, IncorrectEmailException {
         if (!signupRequest.getConfirmPassword().equals(signupRequest.getPassword()))
-            return false;
+            throw new PasswordsDoesntMatchException("Passwords doesn't match");
+            // return false;
 
-        // add check for email and add throw exceptions
+        // TODO: add check for email and add throw exceptions
         if (userRepository.findByUsername(signupRequest.getUsername()).isPresent()) {
-            return false;
+            throw new UsernameAlreadyUsedException("Username already used");
         }
 
+        if (userRepository.findByEmail(signupRequest.getEmail()).isPresent()) {
+            throw new EmailAlreadyUsedException("Email already used");
+        }
+
+        if (!Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
+                .matcher(signupRequest.getEmail())
+                .matches())
+            throw new IncorrectEmailException("Incorrect email");
         try {
             signupRequest.setPassword(new BCryptPasswordEncoder().encode(signupRequest.getPassword()));
             userRepository.save(User.builder()

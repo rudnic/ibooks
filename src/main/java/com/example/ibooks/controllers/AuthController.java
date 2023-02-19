@@ -4,6 +4,10 @@ import com.example.ibooks.config.JwtUtil;
 import com.example.ibooks.dto.requests.LoginRequest;
 import com.example.ibooks.dto.requests.SignupRequest;
 import com.example.ibooks.dto.responses.JwtResponse;
+import com.example.ibooks.exception.EmailAlreadyUsedException;
+import com.example.ibooks.exception.IncorrectEmailException;
+import com.example.ibooks.exception.PasswordsDoesntMatchException;
+import com.example.ibooks.exception.UsernameAlreadyUsedException;
 import com.example.ibooks.models.User;
 import com.example.ibooks.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,11 +64,18 @@ public class AuthController {
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
         // signupRequest.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
         // signupRequest.setConfirmPassword(passwordEncoder.encode(signupRequest.getConfirmPassword()));
-        boolean result = userService.registerUser(signupRequest);
-        if (result)
-            return new ResponseEntity<>("Register successful", HttpStatus.OK);
-
-        return new ResponseEntity<>("Something going wrong", HttpStatus.BAD_REQUEST);
+//        boolean result = userService.registerUser(signupRequest);
+//        if (result)
+//            return new ResponseEntity<>("Register successful", HttpStatus.OK);
+//
+//        return new ResponseEntity<>("Something going wrong", HttpStatus.BAD_REQUEST);
+        try {
+            userService.registerUser(signupRequest);
+        } catch (PasswordsDoesntMatchException | IncorrectEmailException | EmailAlreadyUsedException |
+                 UsernameAlreadyUsedException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>("Register successful", HttpStatus.OK);
     }
 
 }

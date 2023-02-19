@@ -15,7 +15,7 @@ public class IbooksApplication {
     *   1.  Auth *
     *   2.  Register *
     *   3.  Add reviews (and rating)
-    *           Change ReviewsDto to ReviewsProfile and ReviewsBooks
+    *           Change ReviewsDto to ReviewsProfile and ReviewsBooks 
     *   4.  Add likes/dislikes
     *   5.  Change age to bday
     *   6.  Add photos
