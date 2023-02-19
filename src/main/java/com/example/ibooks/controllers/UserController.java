@@ -1,5 +1,6 @@
 package com.example.ibooks.controllers;
 
+import com.example.ibooks.dto.responses.users.UserDto;
 import com.example.ibooks.dto.responses.users.UserListDto;
 import com.example.ibooks.models.User;
 import com.example.ibooks.repository.UserRepository;
@@ -45,7 +46,7 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<?> getUserById(@PathVariable int id) {
-        User user = userService.getUserByID(id);
+        UserDto user = userService.getUserByID(id);
         if (user != null)
             return new ResponseEntity<>(user, HttpStatus.OK);
         return new ResponseEntity<>("User doesn't exist", HttpStatus.NOT_FOUND);

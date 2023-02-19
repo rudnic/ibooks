@@ -1,6 +1,8 @@
 package com.example.ibooks.services;
 
 import com.example.ibooks.dto.requests.SignupRequest;
+import com.example.ibooks.dto.responses.users.ConverterToUserDto;
+import com.example.ibooks.dto.responses.users.UserDto;
 import com.example.ibooks.exception.EmailAlreadyUsedException;
 import com.example.ibooks.exception.IncorrectEmailException;
 import com.example.ibooks.exception.PasswordsDoesntMatchException;
@@ -8,25 +10,25 @@ import com.example.ibooks.exception.UsernameAlreadyUsedException;
 import com.example.ibooks.models.User;
 import com.example.ibooks.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
 public class UserService implements UserDetailsService {
 
+    @Autowired
+    private final ConverterToUserDto converter;
+
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(ConverterToUserDto converter, UserRepository userRepository) {
+        this.converter = converter;
         this.userRepository = userRepository;
     }
 
@@ -35,8 +37,13 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public User getUserByID(int id) {
-        return userRepository.findById(id).orElse(null);
+    public UserDto getUserByID(int id) {
+        if (userRepository.findById(id).isEmpty())
+            return null;
+
+        User user = userRepository.findById(id).get();
+        return converter.mapperToUserDto(user);
+
     }
 
     public User findByUsername(String username) {

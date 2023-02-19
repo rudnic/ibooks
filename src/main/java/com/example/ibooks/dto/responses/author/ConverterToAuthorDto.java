@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -20,7 +21,7 @@ import java.util.Set;
 public class ConverterToAuthorDto implements Serializable {
     public AuthorDto mapperToAuthorDto(Author author) {
 
-        Set<Book> books = author.getBooks();
+        List<Book> books = author.getBooks();
         Set<AuthorsBooksListDTO> booksListDto = new HashSet<>();
         AuthorDto dto = new AuthorDto();
 

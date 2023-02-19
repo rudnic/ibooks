@@ -2,6 +2,7 @@ package com.example.ibooks.dto.responses.book;
 
 import com.example.ibooks.dto.responses.review.ReviewBookDto;
 import com.example.ibooks.dto.responses.review.ReviewsProfileDto;
+import com.example.ibooks.dto.responses.users.UserListDto;
 import com.example.ibooks.models.Author;
 import com.example.ibooks.models.Book;
 import com.example.ibooks.models.Review;
@@ -46,7 +47,8 @@ public class ConverterToBookDto implements Serializable {
         for (Review r : reviews) {
             reviewListDto.add(new ReviewBookDto(
                     r.getId(),
-                    new ReviewsProfileDto(r.getUser().getId(), r.getUser().getUsername()),
+                    new UserListDto(r.getUser().getId(), r.getUser().getFirstname(),
+                            r.getUser().getLastname(), r.getUser().getUsername(), r.getUser().getAge()),
                     r.getDate(),
                     r.getText()
             ));

@@ -1,9 +1,11 @@
 package com.example.ibooks.dto.responses.users;
 
 import com.example.ibooks.dto.responses.review.ReviewDto;
+import com.example.ibooks.dto.responses.review.ReviewsProfileDto;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -20,6 +22,6 @@ public class UserDto implements Serializable {
     private String email;
     private int age;
 
-    private Set<ReviewDto> reviews;
+    private List<ReviewsProfileDto> reviews;
 
 }

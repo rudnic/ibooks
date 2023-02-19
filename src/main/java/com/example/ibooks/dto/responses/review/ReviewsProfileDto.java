@@ -1,5 +1,6 @@
 package com.example.ibooks.dto.responses.review;
 
+import com.example.ibooks.dto.responses.book.AllBooksDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,5 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class ReviewsProfileDto implements Serializable {
     private int id;
-    private String username;
+    private AllBooksDto book;
+    private String date;
+    private String text;
 }

@@ -44,7 +44,7 @@ public class BookService {
                     .id(book.getId())
                     .name(book.getName())
                     .rating(book.getRating())
-                    .authors(book.getAuthors().stream().map(author -> new AllBooksDtoAuthorList(author.getId(), author.getFullname())).collect(Collectors.toSet()))
+                    .authors(book.getAuthors().stream().map(author -> new AllBooksDtoAuthorList(author.getId(), author.getFullname())).collect(Collectors.toList()))
                     .build());
         }
 

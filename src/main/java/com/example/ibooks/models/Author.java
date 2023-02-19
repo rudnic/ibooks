@@ -9,6 +9,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,5 +35,5 @@ public class Author implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     @JsonBackReference
-    private Set<Book> books;
+    private List<Book> books;
 }
