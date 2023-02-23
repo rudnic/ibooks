@@ -22,4 +22,3 @@ public class BookDto implements Serializable {
     private Set<ReviewBookDto> reviews = new HashSet<>();
 }
 
-// TODO: add reviews

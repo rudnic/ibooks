@@ -34,7 +34,7 @@ public class User implements Serializable, UserDetails {
     private int age;
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Review> reviews;
 
 
