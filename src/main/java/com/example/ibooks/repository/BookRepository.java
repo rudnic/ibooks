@@ -10,4 +10,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface BookRepository extends JpaRepository<Book, Integer> {
+
 }

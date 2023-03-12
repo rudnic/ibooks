@@ -15,7 +15,6 @@ import java.util.Set;
 @Table(name = "books")
 @Getter
 @Setter
-@ToString
 public class Book implements Serializable {
 
     @Id
@@ -30,5 +29,20 @@ public class Book implements Serializable {
     private List<Author> authors;
 
     @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
+//    @OneToMany(fetch = FetchType.EAGER)
     private Set<Review> reviews;
+
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
+    // @OneToMany
+    private Set<Rating> ratingList;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", snippet='" + snippet + '\'' +
+                ", rating=" + rating +
+                '}';
+    }
 }

@@ -37,7 +37,3 @@ public class ReviewService {
         }
     }
 }
-
-//addReviewRequest.getDate(), addReviewRequest.getText(),
-//        userRepository.findById(addReviewRequest.getUserId()).get(),
-//        bookRepository.findById(addReviewRequest.getBookId()).get()

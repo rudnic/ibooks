@@ -1,10 +1,12 @@
 package com.example.ibooks.dto.responses.book;
 
+import com.example.ibooks.dto.responses.rating.BookRatingsDto;
 import com.example.ibooks.dto.responses.review.ReviewBookDto;
 import com.example.ibooks.dto.responses.review.ReviewsProfileDto;
 import com.example.ibooks.dto.responses.users.UserListDto;
 import com.example.ibooks.models.Author;
 import com.example.ibooks.models.Book;
+import com.example.ibooks.models.Rating;
 import com.example.ibooks.models.Review;
 import lombok.Builder;
 import lombok.Data;
@@ -27,10 +29,9 @@ public class ConverterToBookDto implements Serializable {
 
         List<Author> authors = book.getAuthors();
         Set<BooksAuthorsListDTO> authorsListDto = new HashSet<>();
-
-        Set<Review> reviews = book.getReviews();
-
+        Set<Review> reviews = new HashSet<>(book.getReviews());
         Set<ReviewBookDto> reviewListDto = new HashSet<>();
+        Set<BookRatingsDto> ratingList = new HashSet<>();
 
         BookDto dto = new BookDto();
 
@@ -54,6 +55,17 @@ public class ConverterToBookDto implements Serializable {
             ));
         }
 
+        for (Rating r : book.getRatingList()) {
+            ratingList.add(new BookRatingsDto(
+                    new UserListDto(
+                            r.getUser().getId(), r.getUser().getFirstname(),
+                            r.getUser().getLastname(), r.getUser().getUsername(), r.getUser().getAge()
+                    ),
+                    r.getValue()
+            ));
+        }
+
+        dto.setRatingList(ratingList);
         dto.setAuthors(authorsListDto);
         dto.setReviews(reviewListDto);
         return dto;

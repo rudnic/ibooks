@@ -20,9 +20,12 @@ public class AuthorService {
     @Autowired
     private ConverterToAuthorDto converterToAuthorDto;
 
-    public AuthorDto getAuthorById(int id) { // its cannot convert nested classes
-        if (authorRepository.findById(id).isEmpty())
-            return null;
+    public AuthorDto getAuthorById(int id) {
+//        if (authorRepository.findById(id).isEmpty())
+//            return null;
+        List<Author> authors = authorRepository.findAll(); // ЭТО НЕ УДАЛЯТЬ
+//        Author author = authors.get(0);
+//        Author author = authorRepository.findById(id).get();
         return converterToAuthorDto.mapperToAuthorDto(authorRepository.findById(id).get());
     }
 

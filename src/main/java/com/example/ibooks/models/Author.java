@@ -16,7 +16,6 @@ import java.util.Set;
 @Table(name = "authors")
 @Getter
 @Setter
-@ToString
 public class Author implements Serializable {
 
     @Id
@@ -36,4 +35,14 @@ public class Author implements Serializable {
     )
     @JsonBackReference
     private List<Book> books;
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", fullname='" + fullname + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", info='" + info + '\'' +
+                '}';
+    }
 }

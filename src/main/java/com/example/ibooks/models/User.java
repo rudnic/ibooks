@@ -1,9 +1,6 @@
 package com.example.ibooks.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -37,6 +34,9 @@ public class User implements Serializable, UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Review> reviews;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Rating> ratings;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -61,5 +61,18 @@ public class User implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

@@ -38,6 +38,7 @@ public class UserService implements UserDetailsService {
     }
 
     public UserDto getUserByID(int id) {
+        userRepository.findAll();
         if (userRepository.findById(id).isEmpty())
             return null;
 

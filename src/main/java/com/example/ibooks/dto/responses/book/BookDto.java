@@ -1,5 +1,6 @@
 package com.example.ibooks.dto.responses.book;
 
+import com.example.ibooks.dto.responses.rating.BookRatingsDto;
 import com.example.ibooks.dto.responses.review.ReviewBookDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,6 @@ public class BookDto implements Serializable {
     private float rating;
     private Set<BooksAuthorsListDTO> authors = new HashSet<>();
     private Set<ReviewBookDto> reviews = new HashSet<>();
+    private Set<BookRatingsDto> ratingList = new HashSet<>();
 }
 

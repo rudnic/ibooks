@@ -1,6 +1,6 @@
 package com.example.ibooks.dto.responses.users;
 
-import com.example.ibooks.dto.responses.review.ReviewDto;
+import com.example.ibooks.dto.responses.rating.RatingsProfileDto;
 import com.example.ibooks.dto.responses.review.ReviewsProfileDto;
 import lombok.*;
 
@@ -23,5 +23,6 @@ public class UserDto implements Serializable {
     private int age;
 
     private List<ReviewsProfileDto> reviews;
+    private Set<RatingsProfileDto> ratingList;
 
 }

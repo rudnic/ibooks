@@ -27,4 +27,13 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }
