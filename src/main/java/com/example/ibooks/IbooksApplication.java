@@ -18,7 +18,7 @@ public class IbooksApplication {
     *   3.  Add reviews (and rating)
     *           Change ReviewsDto to ReviewsProfile and ReviewsBooks *
     *   4.  Add likes/dislikes
-    *           add one more trigger on delete
+    *           add one more trigger on delete (it is doesn't works!!!) -
     *           just do it in api
     *   5.  Change age to bday
     *   6.  Add photos ?

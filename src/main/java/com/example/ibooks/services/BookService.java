@@ -27,12 +27,8 @@ public class BookService {
     private ConverterToBookDto converterToBookDto;
 
     public BookDto getBookById(int id) {
-//        if (bookRepository.findById(id).isEmpty()) КАКОГО СУКА ХУЯ ЭТО РУИНИТ ВСЁ
-//            return null;
-        //System.out.println(bookRepository.findById(id).get().getReviews());
-        // Book book = bookRepository.findById(id).get();
+
         List<Book> books = bookRepository.findAll(); // НЕ УДАЛЯТЬ ИНАЧЕ БУДУТ БАГИ
-//        Book book = bookRepository.findById(id).get();
         return converterToBookDto.mapperToBookDto(bookRepository.findById(id).get());
 
     }
