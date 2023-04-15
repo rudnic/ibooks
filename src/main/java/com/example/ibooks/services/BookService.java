@@ -50,4 +50,8 @@ public class BookService {
         return allBooksDtos;
     }
 
+    public Book findById(int id) {
+        return bookRepository.findById(id).get();
+    }
+
 }

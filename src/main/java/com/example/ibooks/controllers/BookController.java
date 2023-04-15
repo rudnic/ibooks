@@ -1,25 +1,25 @@
 package com.example.ibooks.controllers;
 
-import com.example.ibooks.models.Book;
-import com.example.ibooks.repository.AuthorRepository;
-import com.example.ibooks.repository.BookRepository;
-import com.example.ibooks.services.AuthorService;
+import com.example.ibooks.dto.requests.AddRatingRequest;
+import com.example.ibooks.models.User;
+import com.example.ibooks.repository.RatingReposiroty;
 import com.example.ibooks.services.BookService;
+import com.example.ibooks.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private RatingService ratingService;
 
     @GetMapping("/books")
     public ResponseEntity<?> getAllBooks() {
@@ -33,11 +33,11 @@ public class BookController {
         return new ResponseEntity<>(bookService.getBookById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/books/{id}/like")
-    public ResponseEntity<?> dislikeBook() {
+    @PostMapping("/books/like")
+    public ResponseEntity<?> dislikeBook(@RequestBody AddRatingRequest addRatingRequest) {
 
-
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        ratingService.addRating(addRatingRequest, (User) authentication.getPrincipal(), addRatingRequest.getValue());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

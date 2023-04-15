@@ -19,13 +19,11 @@ public class ReviewController {
     @Autowired
     ReviewService reviewService;
 
-    @Autowired
-    UserRepository userRepository;
-
     @PostMapping("/review/add")
     public ResponseEntity<?> addReviews(@RequestBody AddReviewRequest addReviewRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(authentication.getPrincipal());
         return new ResponseEntity<>(reviewService.save(addReviewRequest, (User) authentication.getPrincipal()), HttpStatus.OK);
     }
+
 }
